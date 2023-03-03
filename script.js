@@ -13,7 +13,9 @@ const winningCondition = [
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
-let currentPlayer = "X";
+let playerX = "<span style='color:blue'>X</span>";
+let playerO = "<span style='color:red'>O</span>";
+let currentPlayer = playerX;
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `Game has ended in a draw!`;
@@ -48,7 +50,7 @@ function handleResultValidation() {
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]];
-        if (a === '' || b === '' || c === '') {
+        if (a === "" || b === "" || c === "") {
             continue;
         }
         if (a === b && b === c) {
@@ -73,7 +75,7 @@ function handleResultValidation() {
 }
 
 function handlePlayerChange() {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    currentPlayer = currentPlayer === playerX ? playerO : playerX;
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
