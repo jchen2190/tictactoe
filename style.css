@@ -1,5 +1,10 @@
 body {
     font-family: sans-serif;
+    background-color: #FBFAF5;
+    /* height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
@@ -15,20 +20,28 @@ section {
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     border-color: 1px solid #333333;
     cursor: pointer;
     font-size: 60px;
 }
 
 [data-index="3"], [data-index="4"], [data-index="5"]{
-    border-top: 2px solid;
-    border-bottom: 2px solid;
+    border-top: 5px solid grey;
+    border-bottom: 5px solid grey;
 }
 
 [data-index="1"], [data-index="4"], [data-index="7"]{
-    border-right: 2px solid;
-    border-left: 2px solid;
+    border-right: 5px solid grey;
+    border-left: 5px solid grey;
+}
+
+@media (min-height: 600px) {
+    .cell {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+    }
 }

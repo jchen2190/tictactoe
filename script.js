@@ -82,7 +82,7 @@ function handlePlayerChange() {
 function handleRestartGame() {
     // reset everything
     gameActive = true;
-    currentPlayer = "X";
+    currentPlayer = playerX;
     gameState = ["", "", "", "", "", "", "", "", ""]
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
