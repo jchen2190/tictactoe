@@ -1,7 +1,7 @@
 # tictactoe
-This project is based on the game 'Tic-Tac_Toe'.
+This project is based on the game 'Tic-Tac-Toe'.
 
-Rules:
+<b>Rules</b>:
 1. Player X goes first.
 2. Each player takes a turn marking a spot in the 3x3 grid.
 3. The first player to get 3 marks in a row (up, down, across, or diagonally) wins the game.
