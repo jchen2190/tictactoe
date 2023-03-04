@@ -1,6 +1,8 @@
 # tictactoe
 This project is based on the game 'Tic-Tac-Toe'.
 
+![screenshot](/images/tictactoe-screenshot.png)
+
 <b>Rules</b>:
 1. Player X goes first.
 2. Each player takes a turn marking a spot in the 3x3 grid.
@@ -11,7 +13,4 @@ This project is based on the game 'Tic-Tac-Toe'.
 Project is created with Javascript.
 
 ## Deployment
-Go to [https://jchen2190@github.io/tictactoe](https://jchen2190@github.io/tictactoe)
-
-## Insiration
-Learn this project based on a tutorial. The tutorial website is at [https://dev.to/bornasepic/pure-and-simple-tic-tac-toe-with-javascript-4pgn](https://dev.to/bornasepic/pure-and-simple-tic-tac-toe-with-javascript-4pgn)
+Go to [https://jchen2190.github.io/tictactoe/](https://jchen2190.github.io/tictactoe/)
