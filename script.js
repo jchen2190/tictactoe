@@ -1,5 +1,3 @@
-const statusDisplay = document.getElementById("gameStatus");
-
 const winningCondition = [
     [0, 1, 2], // horizontal
     [3, 4, 5],
@@ -21,15 +19,20 @@ const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `Game has ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
+const statusDisplay = document.getElementById("gameStatus");
 statusDisplay.innerHTML = currentPlayerTurn();
+
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
+document.querySelector('#restartBtn').addEventListener('click', handleRestartGame);
 
 
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
 
-    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index')); // turn string to number after grabbing
+    // turn string to number after grabbing
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index')); // 0 1 2....
 
-    // check if game has been played or paused
+    // if the box is not empty or game has ended => don't fill X or O
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
@@ -87,6 +90,3 @@ function handleRestartGame() {
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
-
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
-document.querySelector('#restartBtn').addEventListener('click', handleRestartGame);
