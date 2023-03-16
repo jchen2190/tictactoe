@@ -22,37 +22,35 @@ const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 const statusDisplay = document.getElementById("gameStatus");
 statusDisplay.innerHTML = currentPlayerTurn();
 
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
-document.querySelector('#restartBtn').addEventListener('click', handleRestartGame);
+// buttons
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', playGame));
+document.querySelector('#restartBtn').addEventListener('click', restartGame);
 
 
-function handleCellClick(clickedCellEvent) {
-    const clickedCell = clickedCellEvent.target;
+function playGame(cell) {
+    console.log(cell.target);
+    const clickedCell = cell.target;
+    clickedCell.style.userSelect = "none"; // prevent highlighting 'X' or 'O'
 
-    // turn string to number after grabbing
+    // get data-index: "0" and turn into string
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index')); // 0 1 2....
 
     // if the box is not empty or game has ended => don't fill X or O
-    if (gameState[clickedCellIndex] !== "" || !gameActive) {
-        return;
-    }
+    if (gameState[clickedCellIndex] !== "" || !gameActive) { return }
     
-    handleCellPlayed(clickedCell, clickedCellIndex);
-    handleResultValidation();
-}
-
-function handleCellPlayed(clickedCell, clickedCellIndex) {
-    gameState[clickedCellIndex] = currentPlayer;
+    gameState[clickedCellIndex] = currentPlayer; // assign letter to player
     clickedCell.innerHTML = currentPlayer;
+    
+    evalGame(); // check winning condition
 }
 
-function handleResultValidation() {
+function evalGame() {
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
-        const winCondition = winningCondition[i];
-        let a = gameState[winCondition[0]];
-        let b = gameState[winCondition[1]];
-        let c = gameState[winCondition[2]];
+        const winCondition = winningCondition[i]; // ex. [1, 4, 7]
+        let a = gameState[winCondition[0]]; // ex. check if currentPlayer has 1
+        let b = gameState[winCondition[1]]; // ex. check if currentPlayer has 4
+        let c = gameState[winCondition[2]]; // ex. check if currentPlayer has 7
         if (a === "" || b === "" || c === "") {
             continue;
         }
@@ -67,22 +65,18 @@ function handleResultValidation() {
         return;
     }
 
-    let roundDraw = !gameState.includes("");
+    let roundDraw = !gameState.includes(""); // true when all is filled
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;
     }
 
-    handlePlayerChange();
-}
-
-function handlePlayerChange() {
-    currentPlayer = currentPlayer === playerX ? playerO : playerX;
+    currentPlayer = currentPlayer === playerX ? playerO : playerX; // change player;
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
-function handleRestartGame() {
+function restartGame() {
     // reset everything
     gameActive = true;
     currentPlayer = playerX;
